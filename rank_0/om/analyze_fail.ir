@@ -1,0 +1,925 @@
+# ===============================================================================================
+# The following shows the last analyze fail log message.
+# ===============================================================================================
+
+----------------------------------------------------
+- Caught exception:
+----------------------------------------------------
+For 'MatMul' the input dimensions must be equal, but got 'x1_col': 380160 and 'x2_row': 4736.
+
+----------------------------------------------------
+- C++ Call Stack: (For framework developers)
+----------------------------------------------------
+mindspore/ops/infer/ops_func_impl//matmul.cc:78 mindspore::ops::MatMulFuncImpl::InferShape2D
+
+----------------------------------------------------
+- The Traceback of Net Construct Code:
+----------------------------------------------------
+# 0 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:424~425, 8~46
+        if not self.sense_flag:
+# 1 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:425, 19~46
+            return self._no_sens_impl(*inputs)
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 2 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:445~446, 8~95
+        if self.use_graceful_exit:
+# 3 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:448~452, 8~45
+        if self.return_grad:
+# 4 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:442, 15~36
+        loss = self.network(*inputs)
+               ^~~~~~~~~~~~~~~~~~~~~
+# 5 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:122, 14~34
+        out = self._backbone(data)
+              ^~~~~~~~~~~~~~~~~~~~
+# 6 In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:157, 35~46
+        x = self.dropout(self.relu(self.fc1(x)))
+                                   ^~~~~~~~~~~
+# 7 In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:157, 35~43
+        x = self.dropout(self.relu(self.fc1(x)))
+                                   ^~~~~~~~
+# 8 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:808~809, 8~43
+        if self.has_bias:
+# 9 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:809, 12~43
+            x = self.bias_add(x, self.bias)
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 10 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:810~811, 8~34
+        if self.activation_flag:
+# 11 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:812~814, 8~42
+        if len(x_shape) != 2:
+# 12 In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:807, 12~39
+        x = self.matmul(x, self.weight)
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# ===============================================================================================
+# The following shows the IR when the function graphs evaluation fails to help locate the problem.
+# You can search the last ------------------------> to the node which is evaluated failure.
+# Refer to https://www.mindspore.cn/search?inputValue=analyze_fail.ir to get more instructions.
+# ===============================================================================================
+
+# IR entry: @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_18
+# Total subgraphs: 0
+
+# Attrs:
+training: 1
+compile_phase: train.1782137799677073920.2332491707632.0...0
+
+# Total params: 18
+# Params:
+%para1_inputs0: <null>
+%para2_inputs1: <null>
+%para3_conv1.weight: <Ref[Tensor[Float32]], (32, 1, 3, 3), ref_key=conv1.weight, is_parameter>  :  has_default
+%para4_bn1.gamma: <Ref[Tensor[Float32]], (32), ref_key=bn1.gamma, is_parameter, is_inplace>  :  has_default
+%para5_bn1.beta: <Ref[Tensor[Float32]], (32), ref_key=bn1.beta, is_parameter, is_inplace>  :  has_default
+%para6_bn1.moving_mean: <Ref[Tensor[Float32]], (32), ref_key=bn1.moving_mean, is_parameter, is_inplace>  :  has_default
+%para7_bn1.moving_variance: <Ref[Tensor[Float32]], (32), ref_key=bn1.moving_variance, is_parameter, is_inplace>  :  has_default
+%para8_conv2.weight: <Ref[Tensor[Float32]], (64, 32, 3, 3), ref_key=conv2.weight, is_parameter>  :  has_default
+%para9_bn2.gamma: <Ref[Tensor[Float32]], (64), ref_key=bn2.gamma, is_parameter, is_inplace>  :  has_default
+%para10_bn2.beta: <Ref[Tensor[Float32]], (64), ref_key=bn2.beta, is_parameter, is_inplace>  :  has_default
+%para11_bn2.moving_mean: <Ref[Tensor[Float32]], (64), ref_key=bn2.moving_mean, is_parameter, is_inplace>  :  has_default
+%para12_bn2.moving_variance: <Ref[Tensor[Float32]], (64), ref_key=bn2.moving_variance, is_parameter, is_inplace>  :  has_default
+%para13_conv3.weight: <Ref[Tensor[Float32]], (128, 64, 3, 3), ref_key=conv3.weight, is_parameter>  :  has_default
+%para14_bn3.gamma: <Ref[Tensor[Float32]], (128), ref_key=bn3.gamma, is_parameter, is_inplace>  :  has_default
+%para15_bn3.beta: <Ref[Tensor[Float32]], (128), ref_key=bn3.beta, is_parameter, is_inplace>  :  has_default
+%para16_bn3.moving_mean: <Ref[Tensor[Float32]], (128), ref_key=bn3.moving_mean, is_parameter, is_inplace>  :  has_default
+%para17_bn3.moving_variance: <Ref[Tensor[Float32]], (128), ref_key=bn3.moving_variance, is_parameter, is_inplace>  :  has_default
+%para18_fc1.weight: <Ref[Tensor[Float32]], (256, 4736), ref_key=fc1.weight, is_parameter>  :  has_default
+
+subgraph attr:
+training: 1
+compile_phase: train.1782137799677073920.2332491707632.0...0
+subgraph instance: mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_18 : 0000021F08DCE170
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:423~438, 4~19/    def construct(self, *inputs):/
+subgraph @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_18() {
+  %0(CNode_44) = resolve(NameSpace[Entry: 'mindspore.nn.wrap.cell_wrapper.TrainOneStepCell.construct'], mindspore.nn.wrap.cell_wrapper.TrainOneStepCell.construct)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default)
+  %1(CNode_45) = MakeTuple(%para1_inputs0, %para2_inputs1)
+      : (<Tensor[Float32], (32, 1, 300, 13)>, <Tensor[Int32], (32)>) -> (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>)
+      #scope: (Default)
+
+#------------------------> 0
+  %2(CNode_46) = DoUnpackCall(%0, %1)
+      : (<Func, NoShape>, <Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>) -> (<null>)
+      #scope: (Default)
+  Return(%2)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:424~425, 8~46/        if not self.sense_flag:/
+}
+# Order:
+#   1: @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_18:CNode_44{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> Entry: 'mindspore.nn.wrap.cell_wrapper.TrainOneStepCell.construct', [2]: ValueNode<Symbol> mindspore.nn.wrap.cell_wrapper.TrainOneStepCell.construct}
+#   2: @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_18:CNode_46{[0]: ValueNode<Primitive> DoUnpackCall, [1]: CNode_44, [2]: CNode_45}
+#   3: @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_18:CNode_47{[0]: ValueNode<Primitive> Return, [1]: CNode_46}
+
+
+subgraph attr:
+core: 1
+subgraph instance: UnpackCall_19 : 0000021F08DD5BD0
+
+subgraph @UnpackCall_19(%para0_Parameter_20, %para0_Parameter_21) {
+  %0(CNode_48) = TupleGetItem(%para0_Parameter_21, I64(0))
+      : (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>, <Int64, NoShape>) -> (<Tensor[Float32], (32, 1, 300, 13)>)
+      #scope: (Default)
+  %1(CNode_49) = TupleGetItem(%para0_Parameter_21, I64(1))
+      : (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>, <Int64, NoShape>) -> (<Tensor[Int32], (32)>)
+      #scope: (Default)
+
+#------------------------> 1
+  %2(CNode_50) = Parameter_20(%0, %1)
+      : (<Tensor[Float32], (32, 1, 300, 13)>, <Tensor[Int32], (32)>) -> (<null>)
+      #scope: (Default)
+  Return(%2)
+      : (<null>)
+      #scope: (Default)
+}
+# Order:
+#   1: @UnpackCall_19:CNode_50{[0]: param_Parameter_20, [1]: CNode_48, [2]: CNode_49}
+#   2: @UnpackCall_19:CNode_51{[0]: ValueNode<Primitive> Return, [1]: CNode_50}
+
+
+subgraph attr:
+training: 1
+compile_phase: train.1782137799677073920.2332491707632.0...0
+subgraph instance: mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_22 : 0000021F08DD6160
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:423~438, 4~19/    def construct(self, *inputs):/
+subgraph @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_22(%para0_inputs0, %para0_inputs1) {
+
+#------------------------> 2
+  %0(CNode_52) = call @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_23()
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:424~425, 8~46/        if not self.sense_flag:/
+  Return(%0)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:424~425, 8~46/        if not self.sense_flag:/
+}
+# Order:
+#   1: @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_22:CNode_52{[0]: ValueNode<FuncGraph> mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_23}
+#   2: @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_22:CNode_53{[0]: ValueNode<Primitive> Return, [1]: CNode_52}
+#   3: @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_22:CNode_54{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>', [2]: ValueNode<Symbol> _no_sens_impl}
+
+
+subgraph attr:
+training: 1
+subgraph instance: mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_23 : 0000021F08DD29C0
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:423~438, 4~19/    def construct(self, *inputs):/
+subgraph @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_23 parent: [subgraph @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_22]() {
+  %0(CNode_54) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>'], _no_sens_impl)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:425, 19~37/            return self._no_sens_impl(*inputs)/
+  %1(CNode_55) = MakeTuple(%para0_inputs0, %para0_inputs1)
+      : (<Tensor[Float32], (32, 1, 300, 13)>, <Tensor[Int32], (32)>) -> (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:423, 25~31/    def construct(self, *inputs):/
+
+#------------------------> 3
+  %2(CNode_56) = DoUnpackCall(%0, %1)
+      : (<Func, NoShape>, <Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:425, 19~46/            return self._no_sens_impl(*inputs)/
+  Return(%2)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:425, 12~46/            return self._no_sens_impl(*inputs)/
+}
+# Order:
+#   1: @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_23:CNode_56{[0]: ValueNode<Primitive> DoUnpackCall, [1]: CNode_54, [2]: CNode_55}
+#   2: @mindspore_nn_wrap_cell_wrapper_TrainOneStepCell_construct_23:CNode_57{[0]: ValueNode<Primitive> Return, [1]: CNode_56}
+
+
+subgraph attr:
+core: 1
+subgraph instance: UnpackCall_24 : 0000021F08DD7D30
+
+subgraph @UnpackCall_24(%para0_Parameter_25, %para0_Parameter_26) {
+  %0(CNode_58) = TupleGetItem(%para0_Parameter_26, I64(0))
+      : (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>, <Int64, NoShape>) -> (<Tensor[Float32], (32, 1, 300, 13)>)
+      #scope: (Default)
+  %1(CNode_59) = TupleGetItem(%para0_Parameter_26, I64(1))
+      : (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>, <Int64, NoShape>) -> (<Tensor[Int32], (32)>)
+      #scope: (Default)
+
+#------------------------> 4
+  %2(CNode_60) = Parameter_25(%0, %1)
+      : (<Tensor[Float32], (32, 1, 300, 13)>, <Tensor[Int32], (32)>) -> (<null>)
+      #scope: (Default)
+  Return(%2)
+      : (<null>)
+      #scope: (Default)
+}
+# Order:
+#   1: @UnpackCall_24:CNode_60{[0]: param_Parameter_25, [1]: CNode_58, [2]: CNode_59}
+#   2: @UnpackCall_24:CNode_61{[0]: ValueNode<Primitive> Return, [1]: CNode_60}
+
+
+subgraph attr:
+training: 1
+subgraph instance: _no_sens_impl_27 : 0000021F08DD4590
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:440~453, 4~19/    def _no_sens_impl(self, *inputs):/
+subgraph @_no_sens_impl_27(%para0_inputs0, %para0_inputs1) {
+
+#------------------------> 5
+  %0(CNode_62) = call @_no_sens_impl_28()
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:445~446, 8~95/        if self.use_graceful_exit:/
+  Return(%0)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:445~446, 8~95/        if self.use_graceful_exit:/
+}
+# Order:
+#   1: @_no_sens_impl_27:CNode_63{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>', [2]: ValueNode<Symbol> network}
+#   2: @_no_sens_impl_27:loss{[0]: ValueNode<Primitive> DoUnpackCall, [1]: CNode_63, [2]: CNode_64}
+#   3: @_no_sens_impl_27:CNode_65{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>', [2]: ValueNode<Symbol> grad_no_sens}
+#   4: @_no_sens_impl_27:CNode_66{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>', [2]: ValueNode<Symbol> network}
+#   5: @_no_sens_impl_27:CNode_67{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>', [2]: ValueNode<Symbol> weights}
+#   6: @_no_sens_impl_68:CNode_69{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   7: @_no_sens_impl_27:CNode_70{[0]: CNode_65, [1]: CNode_66, [2]: CNode_67}
+#   8: @_no_sens_impl_27:grads{[0]: ValueNode<Primitive> DoUnpackCall, [1]: CNode_70, [2]: CNode_64}
+#   9: @_no_sens_impl_27:CNode_71{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>', [2]: ValueNode<Symbol> grad_reducer}
+#  10: @_no_sens_impl_68:CNode_72{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  11: @_no_sens_impl_27:grads{[0]: CNode_71, [1]: grads}
+#  12: @_no_sens_impl_27:CNode_62{[0]: ValueNode<FuncGraph> _no_sens_impl_28}
+#  13: @_no_sens_impl_27:CNode_73{[0]: ValueNode<Primitive> Return, [1]: CNode_62}
+#  14: @_no_sens_impl_27:CNode_74{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:mindspore.nn.wrap.cell_wrapper', [2]: ValueNode<Symbol> ops}
+
+
+subgraph attr:
+training: 1
+subgraph instance: _no_sens_impl_28 : 0000021F08DD8850
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:440~453, 4~19/    def _no_sens_impl(self, *inputs):/
+subgraph @_no_sens_impl_28 parent: [subgraph @_no_sens_impl_27]() {
+
+#------------------------> 6
+  %0(CNode_75) = call @_no_sens_impl_29()
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:445~446, 8~95/        if self.use_graceful_exit:/
+  Return(%0)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:445~446, 8~95/        if self.use_graceful_exit:/
+}
+# Order:
+#   1: @_no_sens_impl_28:CNode_75{[0]: ValueNode<FuncGraph> _no_sens_impl_29}
+#   2: @_no_sens_impl_28:CNode_76{[0]: ValueNode<Primitive> Return, [1]: CNode_75}
+
+
+subgraph attr:
+training: 1
+subgraph instance: _no_sens_impl_29 : 0000021F08DD82C0
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:440~453, 4~19/    def _no_sens_impl(self, *inputs):/
+subgraph @_no_sens_impl_29 parent: [subgraph @_no_sens_impl_27]() {
+
+#------------------------> 7
+  %0(CNode_77) = call @_no_sens_impl_30()
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:448~452, 8~45/        if self.return_grad:/
+  Return(%0)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:448~452, 8~45/        if self.return_grad:/
+}
+# Order:
+#   1: @_no_sens_impl_29:CNode_78{[0]: ValueNode<Primitive> getattr, [1]: CNode_74, [2]: ValueNode<StringImm> depend}
+#   2: @_no_sens_impl_29:CNode_79{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>', [2]: ValueNode<Symbol> optimizer}
+#   3: @_no_sens_impl_80:CNode_81{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   4: @_no_sens_impl_29:CNode_82{[0]: CNode_79, [1]: grads}
+#   5: @_no_sens_impl_80:CNode_83{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   6: @_no_sens_impl_29:loss{[0]: CNode_78, [1]: loss, [2]: CNode_82}
+#   7: @_no_sens_impl_29:CNode_77{[0]: ValueNode<FuncGraph> _no_sens_impl_30}
+#   8: @_no_sens_impl_29:CNode_84{[0]: ValueNode<Primitive> Return, [1]: CNode_77}
+
+
+subgraph attr:
+training: 1
+subgraph instance: _no_sens_impl_30 : 0000021F08DD8DE0
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:440~453, 4~19/    def _no_sens_impl(self, *inputs):/
+subgraph @_no_sens_impl_30 parent: [subgraph @_no_sens_impl_29]() {
+
+#------------------------> 8
+  %0(CNode_85) = call @_no_sens_impl_31()
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:448~452, 8~45/        if self.return_grad:/
+  Return(%0)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:448~452, 8~45/        if self.return_grad:/
+}
+# Order:
+#   1: @_no_sens_impl_30:CNode_85{[0]: ValueNode<FuncGraph> _no_sens_impl_31}
+#   2: @_no_sens_impl_30:CNode_86{[0]: ValueNode<Primitive> Return, [1]: CNode_85}
+
+
+subgraph attr:
+training: 1
+subgraph instance: _no_sens_impl_31 : 0000021F08DD9370
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:440~453, 4~19/    def _no_sens_impl(self, *inputs):/
+subgraph @_no_sens_impl_31 parent: [subgraph @_no_sens_impl_29]() {
+  %0(CNode_74) = resolve(NameSpace[SymbolStr: 'Namespace:mindspore.nn.wrap.cell_wrapper'], ops)
+      : (<External, NoShape>, <External, NoShape>) -> (<External, NoShape>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:447, 15~18/        loss = ops.depend(loss, self.optimizer(grads))/
+  %1(CNode_78) = getattr(%0, "depend")
+      : (<External, NoShape>, <String, NoShape>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:447, 15~25/        loss = ops.depend(loss, self.optimizer(grads))/
+  %2(CNode_63) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>'], network)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:442, 15~27/        loss = self.network(*inputs)/
+  %3(CNode_64) = MakeTuple(%para0_inputs0, %para0_inputs1)
+      : (<Tensor[Float32], (32, 1, 300, 13)>, <Tensor[Int32], (32)>) -> (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:440, 29~35/    def _no_sens_impl(self, *inputs):/
+
+#------------------------> 9
+  %4(loss) = DoUnpackCall(%2, %3)
+      : (<Func, NoShape>, <Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:442, 15~36/        loss = self.network(*inputs)/
+  %5(CNode_79) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>'], optimizer)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:447, 32~46/        loss = ops.depend(loss, self.optimizer(grads))/
+  %6(CNode_71) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>'], grad_reducer)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:444, 16~33/        grads = self.grad_reducer(grads)/
+  %7(CNode_65) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>'], grad_no_sens)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:443, 16~33/        grads = self.grad_no_sens(self.network, self.weights)(*inputs)/
+  %8(CNode_66) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>'], network)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:443, 34~46/        grads = self.grad_no_sens(self.network, self.weights)(*inputs)/
+  %9(CNode_67) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<TrainOneStepCell::2332491707632>'], weights)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:443, 48~60/        grads = self.grad_no_sens(self.network, self.weights)(*inputs)/
+  %10(CNode_70) = %7(%8, %9)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:443, 16~61/        grads = self.grad_no_sens(self.network, self.weights)(*inputs)/
+  %11(grads) = DoUnpackCall(%10, %3)
+      : (<null>, <Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:443, 16~70/        grads = self.grad_no_sens(self.network, self.weights)(*inputs)/
+  %12(grads) = %6(%11)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:444, 16~40/        grads = self.grad_reducer(grads)/
+  %13(CNode_82) = %5(%12)
+      : (<null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:447, 32~53/        loss = ops.depend(loss, self.optimizer(grads))/
+  %14(loss) = %1(%4, %13)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:447, 15~54/        loss = ops.depend(loss, self.optimizer(grads))/
+  Return(%14)
+      : (<null>)
+      #scope: (Default)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:453, 8~19/        return loss/
+}
+# Order:
+#   1: @_no_sens_impl_31:CNode_87{[0]: ValueNode<Primitive> Return, [1]: loss}
+
+
+subgraph attr:
+core: 1
+subgraph instance: UnpackCall_32 : 0000021F134784B0
+
+subgraph @UnpackCall_32(%para0_Parameter_33, %para0_Parameter_34) {
+  %0(CNode_88) = TupleGetItem(%para0_Parameter_34, I64(0))
+      : (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>, <Int64, NoShape>) -> (<Tensor[Float32], (32, 1, 300, 13)>)
+      #scope: (Default)
+  %1(CNode_89) = TupleGetItem(%para0_Parameter_34, I64(1))
+      : (<Tuple[Tensor[Float32],Tensor[Int32]], TupleShape((32, 1, 300, 13), (32))>, <Int64, NoShape>) -> (<Tensor[Int32], (32)>)
+      #scope: (Default)
+
+#------------------------> 10
+  %2(CNode_90) = Parameter_33(%0, %1)
+      : (<Tensor[Float32], (32, 1, 300, 13)>, <Tensor[Int32], (32)>) -> (<null>)
+      #scope: (Default)
+  Return(%2)
+      : (<null>)
+      #scope: (Default)
+}
+# Order:
+#   1: @UnpackCall_32:CNode_90{[0]: param_Parameter_33, [1]: CNode_88, [2]: CNode_89}
+#   2: @UnpackCall_32:CNode_91{[0]: ValueNode<Primitive> Return, [1]: CNode_90}
+
+
+subgraph attr:
+training: 1
+subgraph instance: mindspore_nn_wrap_cell_wrapper_WithLossCell_construct_35 : 0000021F08381FF0
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:121~123, 4~40/    def construct(self, data, label):/
+subgraph @mindspore_nn_wrap_cell_wrapper_WithLossCell_construct_35(%para0_data, %para0_label) {
+  %0(CNode_92) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<WithLossCell::2332491707312>'], _loss_fn)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:123, 15~28/        return self._loss_fn(out, label)/
+  %1(CNode_93) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<WithLossCell::2332491707312>'], _backbone)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:122, 14~28/        out = self._backbone(data)/
+
+#------------------------> 11
+  %2(out) = %1(%para0_data)
+      : (<Tensor[Float32], (32, 1, 300, 13)>) -> (<null>)
+      #scope: (Default/network-WithLossCell)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:122, 14~34/        out = self._backbone(data)/
+  %3(CNode_94) = %0(%2, %para0_label)
+      : (<null>, <Tensor[Int32], (32)>) -> (<null>)
+      #scope: (Default/network-WithLossCell)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:123, 15~40/        return self._loss_fn(out, label)/
+  Return(%3)
+      : (<null>)
+      #scope: (Default/network-WithLossCell)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py:123, 8~40/        return self._loss_fn(out, label)/
+}
+# Order:
+#   1: @mindspore_nn_wrap_cell_wrapper_WithLossCell_construct_35:CNode_93{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<WithLossCell::2332491707312>', [2]: ValueNode<Symbol> _backbone}
+#   2: @mindspore_nn_wrap_cell_wrapper_WithLossCell_construct_35:CNode_95{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   4: @mindspore_nn_wrap_cell_wrapper_WithLossCell_construct_35:out{[0]: CNode_93, [1]: param_data}
+#   5: @mindspore_nn_wrap_cell_wrapper_WithLossCell_construct_35:CNode_92{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.wrap.cell_wrapper..<WithLossCell::2332491707312>', [2]: ValueNode<Symbol> _loss_fn}
+#   6: @mindspore_nn_wrap_cell_wrapper_WithLossCell_construct_35:CNode_96{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   8: @mindspore_nn_wrap_cell_wrapper_WithLossCell_construct_35:CNode_94{[0]: CNode_92, [1]: out, [2]: param_label}
+#   9: @mindspore_nn_wrap_cell_wrapper_WithLossCell_construct_35:CNode_97{[0]: ValueNode<Primitive> Return, [1]: CNode_94}
+
+
+subgraph attr:
+training: 1
+subgraph instance: __main___SpeechEmotionCNN_construct_36 : 0000021F13478A40
+# In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:152~159, 4~16/    def construct(self, x):/
+subgraph @__main___SpeechEmotionCNN_construct_36(%para0_x) {
+  %0(CNode_98) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], fc2)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:158, 12~20/        x = self.fc2(x)/
+  %1(CNode_99) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], dropout)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:157, 12~24/        x = self.dropout(self.relu(self.fc1(x)))/
+  %2(CNode_100) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], relu)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:157, 25~34/        x = self.dropout(self.relu(self.fc1(x)))/
+  %3(CNode_101) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], fc1)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:157, 35~43/        x = self.dropout(self.relu(self.fc1(x)))/
+  %4(CNode_102) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], flatten)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:156, 12~24/        x = self.flatten(x)/
+  %5(CNode_103) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], maxpool3)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:155, 12~25/        x = self.maxpool3(self.relu(self.bn3(self.conv3(x))))/
+  %6(CNode_104) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], relu)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:155, 26~35/        x = self.maxpool3(self.relu(self.bn3(self.conv3(x))))/
+  %7(CNode_105) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], bn3)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:155, 36~44/        x = self.maxpool3(self.relu(self.bn3(self.conv3(x))))/
+  %8(CNode_106) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], conv3)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:155, 45~55/        x = self.maxpool3(self.relu(self.bn3(self.conv3(x))))/
+  %9(CNode_107) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], maxpool2)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:154, 12~25/        x = self.maxpool2(self.relu(self.bn2(self.conv2(x))))/
+  %10(CNode_108) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], relu)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:154, 26~35/        x = self.maxpool2(self.relu(self.bn2(self.conv2(x))))/
+  %11(CNode_109) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], bn2)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:154, 36~44/        x = self.maxpool2(self.relu(self.bn2(self.conv2(x))))/
+  %12(CNode_110) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], conv2)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:154, 45~55/        x = self.maxpool2(self.relu(self.bn2(self.conv2(x))))/
+  %13(CNode_111) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], maxpool1)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:153, 12~25/        x = self.maxpool1(self.relu(self.bn1(self.conv1(x))))/
+  %14(CNode_112) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], relu)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:153, 26~35/        x = self.maxpool1(self.relu(self.bn1(self.conv1(x))))/
+  %15(CNode_113) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], bn1)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:153, 36~44/        x = self.maxpool1(self.relu(self.bn1(self.conv1(x))))/
+  %16(CNode_114) = resolve(NameSpace[ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>'], conv1)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:153, 45~55/        x = self.maxpool1(self.relu(self.bn1(self.conv1(x))))/
+  %17(CNode_115) = %16(%para0_x)
+      : (<Tensor[Float32], (32, 1, 300, 13)>) -> (<Tensor[Float32], (32, 32, 300, 13)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:153, 45~58/        x = self.maxpool1(self.relu(self.bn1(self.conv1(x))))/
+  %18(CNode_116) = %15(%17)
+      : (<Tensor[Float32], (32, 32, 300, 13)>) -> (<Tensor[Float32], (32, 32, 300, 13)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:153, 36~59/        x = self.maxpool1(self.relu(self.bn1(self.conv1(x))))/
+  %19(CNode_117) = %14(%18)
+      : (<Tensor[Float32], (32, 32, 300, 13)>) -> (<Tensor[Float32], (32, 32, 300, 13)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:153, 26~60/        x = self.maxpool1(self.relu(self.bn1(self.conv1(x))))/
+  %20(x) = %13(%19)
+      : (<Tensor[Float32], (32, 32, 300, 13)>) -> (<Tensor[Float32], (32, 32, 299, 12)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:153, 12~61/        x = self.maxpool1(self.relu(self.bn1(self.conv1(x))))/
+  %21(CNode_118) = %12(%20)
+      : (<Tensor[Float32], (32, 32, 299, 12)>) -> (<Tensor[Float32], (32, 64, 299, 12)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:154, 45~58/        x = self.maxpool2(self.relu(self.bn2(self.conv2(x))))/
+  %22(CNode_119) = %11(%21)
+      : (<Tensor[Float32], (32, 64, 299, 12)>) -> (<Tensor[Float32], (32, 64, 299, 12)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:154, 36~59/        x = self.maxpool2(self.relu(self.bn2(self.conv2(x))))/
+  %23(CNode_120) = %10(%22)
+      : (<Tensor[Float32], (32, 64, 299, 12)>) -> (<Tensor[Float32], (32, 64, 299, 12)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:154, 26~60/        x = self.maxpool2(self.relu(self.bn2(self.conv2(x))))/
+  %24(x) = %9(%23)
+      : (<Tensor[Float32], (32, 64, 299, 12)>) -> (<Tensor[Float32], (32, 64, 298, 11)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:154, 12~61/        x = self.maxpool2(self.relu(self.bn2(self.conv2(x))))/
+  %25(CNode_121) = %8(%24)
+      : (<Tensor[Float32], (32, 64, 298, 11)>) -> (<Tensor[Float32], (32, 128, 298, 11)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:155, 45~58/        x = self.maxpool3(self.relu(self.bn3(self.conv3(x))))/
+  %26(CNode_122) = %7(%25)
+      : (<Tensor[Float32], (32, 128, 298, 11)>) -> (<Tensor[Float32], (32, 128, 298, 11)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:155, 36~59/        x = self.maxpool3(self.relu(self.bn3(self.conv3(x))))/
+  %27(CNode_123) = %6(%26)
+      : (<Tensor[Float32], (32, 128, 298, 11)>) -> (<Tensor[Float32], (32, 128, 298, 11)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:155, 26~60/        x = self.maxpool3(self.relu(self.bn3(self.conv3(x))))/
+  %28(x) = %5(%27)
+      : (<Tensor[Float32], (32, 128, 298, 11)>) -> (<Tensor[Float32], (32, 128, 297, 10)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:155, 12~61/        x = self.maxpool3(self.relu(self.bn3(self.conv3(x))))/
+  %29(x) = %4(%28)
+      : (<Tensor[Float32], (32, 128, 297, 10)>) -> (<Tensor[Float32], (32, 380160)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:156, 12~27/        x = self.flatten(x)/
+
+#------------------------> 12
+  %30(CNode_124) = %3(%29)
+      : (<Tensor[Float32], (32, 380160)>) -> (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:157, 35~46/        x = self.dropout(self.relu(self.fc1(x)))/
+  %31(CNode_125) = %2(%30)
+      : (<null>) -> (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:157, 25~47/        x = self.dropout(self.relu(self.fc1(x)))/
+  %32(x) = %1(%31)
+      : (<null>) -> (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:157, 12~48/        x = self.dropout(self.relu(self.fc1(x)))/
+  %33(x) = %0(%32)
+      : (<null>) -> (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:158, 12~23/        x = self.fc2(x)/
+  Return(%33)
+      : (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:159, 8~16/        return x/
+}
+# Order:
+#   1: @__main___SpeechEmotionCNN_construct_36:CNode_111{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> maxpool1}
+#   2: @__main___SpeechEmotionCNN_construct_36:CNode_112{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> relu}
+#   3: @__main___SpeechEmotionCNN_construct_36:CNode_113{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> bn1}
+#   4: @__main___SpeechEmotionCNN_construct_36:CNode_114{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> conv1}
+#   5: @__main___SpeechEmotionCNN_construct_36:CNode_126{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   7: @__main___SpeechEmotionCNN_construct_36:CNode_115{[0]: CNode_114, [1]: param_x}
+#   8: @__main___SpeechEmotionCNN_construct_36:CNode_127{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  10: @__main___SpeechEmotionCNN_construct_36:CNode_116{[0]: CNode_113, [1]: CNode_115}
+#  11: @__main___SpeechEmotionCNN_construct_36:CNode_128{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  13: @__main___SpeechEmotionCNN_construct_36:CNode_117{[0]: CNode_112, [1]: CNode_116}
+#  14: @__main___SpeechEmotionCNN_construct_36:CNode_129{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  16: @__main___SpeechEmotionCNN_construct_36:x{[0]: CNode_111, [1]: CNode_117}
+#  17: @__main___SpeechEmotionCNN_construct_36:CNode_107{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> maxpool2}
+#  18: @__main___SpeechEmotionCNN_construct_36:CNode_108{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> relu}
+#  19: @__main___SpeechEmotionCNN_construct_36:CNode_109{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> bn2}
+#  20: @__main___SpeechEmotionCNN_construct_36:CNode_110{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> conv2}
+#  21: @__main___SpeechEmotionCNN_construct_36:CNode_130{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  23: @__main___SpeechEmotionCNN_construct_36:CNode_118{[0]: CNode_110, [1]: x}
+#  24: @__main___SpeechEmotionCNN_construct_36:CNode_131{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  26: @__main___SpeechEmotionCNN_construct_36:CNode_119{[0]: CNode_109, [1]: CNode_118}
+#  27: @__main___SpeechEmotionCNN_construct_36:CNode_132{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  29: @__main___SpeechEmotionCNN_construct_36:CNode_120{[0]: CNode_108, [1]: CNode_119}
+#  30: @__main___SpeechEmotionCNN_construct_36:CNode_133{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  32: @__main___SpeechEmotionCNN_construct_36:x{[0]: CNode_107, [1]: CNode_120}
+#  33: @__main___SpeechEmotionCNN_construct_36:CNode_103{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> maxpool3}
+#  34: @__main___SpeechEmotionCNN_construct_36:CNode_104{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> relu}
+#  35: @__main___SpeechEmotionCNN_construct_36:CNode_105{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> bn3}
+#  36: @__main___SpeechEmotionCNN_construct_36:CNode_106{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> conv3}
+#  37: @__main___SpeechEmotionCNN_construct_36:CNode_134{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  39: @__main___SpeechEmotionCNN_construct_36:CNode_121{[0]: CNode_106, [1]: x}
+#  40: @__main___SpeechEmotionCNN_construct_36:CNode_135{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  42: @__main___SpeechEmotionCNN_construct_36:CNode_122{[0]: CNode_105, [1]: CNode_121}
+#  43: @__main___SpeechEmotionCNN_construct_36:CNode_136{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  45: @__main___SpeechEmotionCNN_construct_36:CNode_123{[0]: CNode_104, [1]: CNode_122}
+#  46: @__main___SpeechEmotionCNN_construct_36:CNode_137{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  48: @__main___SpeechEmotionCNN_construct_36:x{[0]: CNode_103, [1]: CNode_123}
+#  49: @__main___SpeechEmotionCNN_construct_36:CNode_102{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> flatten}
+#  50: @__main___SpeechEmotionCNN_construct_36:CNode_138{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  52: @__main___SpeechEmotionCNN_construct_36:x{[0]: CNode_102, [1]: x}
+#  53: @__main___SpeechEmotionCNN_construct_36:CNode_99{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> dropout}
+#  54: @__main___SpeechEmotionCNN_construct_36:CNode_100{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> relu}
+#  55: @__main___SpeechEmotionCNN_construct_36:CNode_101{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> fc1}
+#  56: @__main___SpeechEmotionCNN_construct_36:CNode_139{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  58: @__main___SpeechEmotionCNN_construct_36:CNode_124{[0]: CNode_101, [1]: x}
+#  59: @__main___SpeechEmotionCNN_construct_36:CNode_140{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  61: @__main___SpeechEmotionCNN_construct_36:CNode_125{[0]: CNode_100, [1]: CNode_124}
+#  62: @__main___SpeechEmotionCNN_construct_36:CNode_141{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  64: @__main___SpeechEmotionCNN_construct_36:x{[0]: CNode_99, [1]: CNode_125}
+#  65: @__main___SpeechEmotionCNN_construct_36:CNode_98{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:__main__..<SpeechEmotionCNN::2332407334448>', [2]: ValueNode<Symbol> fc2}
+#  66: @__main___SpeechEmotionCNN_construct_36:CNode_142{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#  68: @__main___SpeechEmotionCNN_construct_36:x{[0]: CNode_98, [1]: x}
+#  69: @__main___SpeechEmotionCNN_construct_36:CNode_143{[0]: ValueNode<Primitive> Return, [1]: x}
+
+
+subgraph attr:
+training: 1
+subgraph instance: mindspore_nn_layer_basic_Dense_construct_37 : 0000021F1347C770
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:803~815, 4~16/    def construct(self, x):/
+subgraph @mindspore_nn_layer_basic_Dense_construct_37(%para0_x) {
+  %0(CNode_144) = resolve(NameSpace[Ast: 'Namespace:mindspore.graph._parse.trope'], ne)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:805, 11~28/        if len(x_shape) != 2:/
+  %1(CNode_145) = resolve(NameSpace[SymbolStr: 'Namespace:mindspore.nn.layer.basic'], len)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:805, 11~14/        if len(x_shape) != 2:/
+  %2(CNode_146) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>'], shape_op)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:804, 18~31/        x_shape = self.shape_op(x)/
+  %3(x_shape) = %2(%para0_x)
+      : (<Tensor[Float32], (32, 380160)>) -> (<Tuple[Int64*2], TupleShape(NoShape, NoShape)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:804, 18~34/        x_shape = self.shape_op(x)/
+  %4(CNode_147) = %1(%3)
+      : (<Tuple[Int64*2], TupleShape(NoShape, NoShape)>) -> (<Int64, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:805, 11~23/        if len(x_shape) != 2:/
+  %5(CNode_148) = %0(%4, I64(2))
+      : (<Int64, NoShape>, <Int64, NoShape>) -> (<Bool, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:805, 11~28/        if len(x_shape) != 2:/
+  %6(CNode_149) = Cond(%5, Bool(0))
+      : (<Bool, NoShape>, <Bool, NoShape>) -> (<Bool, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:805~806, 8~50/        if len(x_shape) != 2:/
+  %7(CNode_150) = Switch(%6, @mindspore_nn_layer_basic_Dense_construct_151, @mindspore_nn_layer_basic_Dense_construct_152)
+      : (<Bool, NoShape>, <Func, NoShape>, <Func, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:805~806, 8~50/        if len(x_shape) != 2:/
+  %8(CNode_153) = %7()
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:805~806, 8~50/        if len(x_shape) != 2:/
+
+#------------------------> 13
+  %9(CNode_154) = call @mindspore_nn_layer_basic_Dense_construct_38(%8)
+      : (<Tensor[Float32], (32, 380160)>) -> (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:157, 35~43/        x = self.dropout(self.relu(self.fc1(x)))/
+  Return(%9)
+      : (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:805~806, 8~50/        if len(x_shape) != 2:/
+}
+# Order:
+#   1: @mindspore_nn_layer_basic_Dense_construct_37:CNode_146{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>', [2]: ValueNode<Symbol> shape_op}
+#   2: @mindspore_nn_layer_basic_Dense_construct_37:CNode_155{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   4: @mindspore_nn_layer_basic_Dense_construct_37:x_shape{[0]: CNode_146, [1]: param_x}
+#   5: @mindspore_nn_layer_basic_Dense_construct_37:CNode_145{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:mindspore.nn.layer.basic', [2]: ValueNode<Symbol> len}
+#   6: @mindspore_nn_layer_basic_Dense_construct_37:CNode_156{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   8: @mindspore_nn_layer_basic_Dense_construct_37:CNode_147{[0]: CNode_145, [1]: x_shape}
+#   9: @mindspore_nn_layer_basic_Dense_construct_37:CNode_144{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> Ast: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> ne}
+#  10: @mindspore_nn_layer_basic_Dense_construct_37:CNode_148{[0]: CNode_144, [1]: CNode_147, [2]: ValueNode<Int64Imm> 2}
+#  11: @mindspore_nn_layer_basic_Dense_construct_37:CNode_149{[0]: ValueNode<Primitive> Cond, [1]: CNode_148, [2]: ValueNode<BoolImm> false}
+#  12: @mindspore_nn_layer_basic_Dense_construct_37:CNode_150{[0]: ValueNode<Primitive> Switch, [1]: CNode_149, [2]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_151, [3]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_152}
+#  13: @mindspore_nn_layer_basic_Dense_construct_37:CNode_153{[0]: CNode_150}
+#  14: @mindspore_nn_layer_basic_Dense_construct_37:CNode_154{[0]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_38, [1]: CNode_153}
+#  15: @mindspore_nn_layer_basic_Dense_construct_37:CNode_157{[0]: ValueNode<Primitive> Return, [1]: CNode_154}
+#  16: @mindspore_nn_layer_basic_Dense_construct_37:CNode_158{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>', [2]: ValueNode<Symbol> weight}
+#  17: @mindspore_nn_layer_basic_Dense_construct_37:CNode_159{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>', [2]: ValueNode<Symbol> bias}
+#  18: @mindspore_nn_layer_basic_Dense_construct_37:CNode_160{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr: 'Namespace:mindspore.nn.layer.basic', [2]: ValueNode<Symbol> ops}
+
+
+subgraph attr:
+after_block: 1
+training: 1
+subgraph instance: mindspore_nn_layer_basic_Dense_construct_38 : 0000021F13480A30
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:803~815, 4~16/    def construct(self, x):/
+subgraph @mindspore_nn_layer_basic_Dense_construct_38 parent: [subgraph @mindspore_nn_layer_basic_Dense_construct_37](%para0_phi_x) {
+
+#------------------------> 14
+  %0(CNode_161) = call @mindspore_nn_layer_basic_Dense_construct_39()
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:808~809, 8~43/        if self.has_bias:/
+  Return(%0)
+      : (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:808~809, 8~43/        if self.has_bias:/
+}
+# Order:
+#   1: @mindspore_nn_layer_basic_Dense_construct_38:CNode_162{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>', [2]: ValueNode<Symbol> matmul}
+#   3: @mindspore_nn_layer_basic_Dense_construct_38:CNode_163{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   5: @mindspore_nn_layer_basic_Dense_construct_38:x{[0]: CNode_162, [1]: param_phi_x, [2]: CNode_158}
+#   6: @mindspore_nn_layer_basic_Dense_construct_38:CNode_161{[0]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_39}
+#   7: @mindspore_nn_layer_basic_Dense_construct_38:CNode_164{[0]: ValueNode<Primitive> Return, [1]: CNode_161}
+
+
+subgraph attr:
+training: 1
+subgraph instance: mindspore_nn_layer_basic_Dense_construct_39 : 0000021F1347D290
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:803~815, 4~16/    def construct(self, x):/
+subgraph @mindspore_nn_layer_basic_Dense_construct_39 parent: [subgraph @mindspore_nn_layer_basic_Dense_construct_38]() {
+
+#------------------------> 15
+  %0(CNode_165) = call @mindspore_nn_layer_basic_Dense_construct_40()
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:809, 12~43/            x = self.bias_add(x, self.bias)/
+  Return(%0)
+      : (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:809, 12~43/            x = self.bias_add(x, self.bias)/
+}
+# Order:
+#   1: @mindspore_nn_layer_basic_Dense_construct_39:CNode_166{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>', [2]: ValueNode<Symbol> bias_add}
+#   2: @mindspore_nn_layer_basic_Dense_construct_39:CNode_167{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   4: @mindspore_nn_layer_basic_Dense_construct_39:x{[0]: CNode_166, [1]: x, [2]: CNode_159}
+#   5: @mindspore_nn_layer_basic_Dense_construct_39:CNode_165{[0]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_40}
+#   6: @mindspore_nn_layer_basic_Dense_construct_39:CNode_168{[0]: ValueNode<Primitive> Return, [1]: CNode_165}
+
+
+subgraph attr:
+training: 1
+subgraph instance: mindspore_nn_layer_basic_Dense_construct_40 : 0000021F13480FC0
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:803~815, 4~16/    def construct(self, x):/
+subgraph @mindspore_nn_layer_basic_Dense_construct_40 parent: [subgraph @mindspore_nn_layer_basic_Dense_construct_39]() {
+
+#------------------------> 16
+  %0(CNode_169) = call @mindspore_nn_layer_basic_Dense_construct_41()
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:810~811, 8~34/        if self.activation_flag:/
+  Return(%0)
+      : (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:810~811, 8~34/        if self.activation_flag:/
+}
+# Order:
+#   1: @mindspore_nn_layer_basic_Dense_construct_40:CNode_169{[0]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_41}
+#   2: @mindspore_nn_layer_basic_Dense_construct_40:CNode_170{[0]: ValueNode<Primitive> Return, [1]: CNode_169}
+
+
+subgraph attr:
+training: 1
+subgraph instance: mindspore_nn_layer_basic_Dense_construct_41 : 0000021F1347D820
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:803~815, 4~16/    def construct(self, x):/
+subgraph @mindspore_nn_layer_basic_Dense_construct_41 parent: [subgraph @mindspore_nn_layer_basic_Dense_construct_39]() {
+
+#------------------------> 17
+  %0(CNode_171) = call @mindspore_nn_layer_basic_Dense_construct_42()
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:810~811, 8~34/        if self.activation_flag:/
+  Return(%0)
+      : (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:810~811, 8~34/        if self.activation_flag:/
+}
+# Order:
+#   1: @mindspore_nn_layer_basic_Dense_construct_41:CNode_171{[0]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_42}
+#   2: @mindspore_nn_layer_basic_Dense_construct_41:CNode_172{[0]: ValueNode<Primitive> Return, [1]: CNode_171}
+
+
+subgraph attr:
+training: 1
+subgraph instance: mindspore_nn_layer_basic_Dense_construct_42 : 0000021F1347DDB0
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:803~815, 4~16/    def construct(self, x):/
+subgraph @mindspore_nn_layer_basic_Dense_construct_42 parent: [subgraph @mindspore_nn_layer_basic_Dense_construct_39]() {
+  %0(CNode_173) = resolve(NameSpace[Ast: 'Namespace:mindspore.graph._parse.trope'], ne)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:812, 11~28/        if len(x_shape) != 2:/
+  %1(CNode_145) = resolve(NameSpace[SymbolStr: 'Namespace:mindspore.nn.layer.basic'], len)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:805, 11~14/        if len(x_shape) != 2:/
+  %2(CNode_146) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>'], shape_op)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:804, 18~31/        x_shape = self.shape_op(x)/
+  %3(x_shape) = %2(%para0_x)
+      : (<Tensor[Float32], (32, 380160)>) -> (<Tuple[Int64*2], TupleShape(NoShape, NoShape)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:804, 18~34/        x_shape = self.shape_op(x)/
+  %4(CNode_174) = %1(%3)
+      : (<Tuple[Int64*2], TupleShape(NoShape, NoShape)>) -> (<Int64, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:812, 11~23/        if len(x_shape) != 2:/
+  %5(CNode_175) = %0(%4, I64(2))
+      : (<Int64, NoShape>, <Int64, NoShape>) -> (<Bool, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:812, 11~28/        if len(x_shape) != 2:/
+  %6(CNode_176) = Cond(%5, Bool(0))
+      : (<Bool, NoShape>, <Bool, NoShape>) -> (<Bool, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:812~814, 8~42/        if len(x_shape) != 2:/
+  %7(CNode_177) = Switch(%6, @mindspore_nn_layer_basic_Dense_construct_178, @mindspore_nn_layer_basic_Dense_construct_43)
+      : (<Bool, NoShape>, <Func, NoShape>, <Func, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:812~814, 8~42/        if len(x_shape) != 2:/
+
+#------------------------> 18
+  %8(CNode_179) = %7()
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:812~814, 8~42/        if len(x_shape) != 2:/
+  %9(CNode_180) = call @mindspore_nn_layer_basic_Dense_construct_181(%8)
+      : (<null>) -> (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN)
+      # In file C:\Users\10600\Desktop\Mindspore_inhand-main\Mindspore_inhand-main\model_scripts\train_speech_emotion.py:157, 35~43/        x = self.dropout(self.relu(self.fc1(x)))/
+  Return(%9)
+      : (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:812~814, 8~42/        if len(x_shape) != 2:/
+}
+# Order:
+#   1: @mindspore_nn_layer_basic_Dense_construct_42:CNode_182{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> MakeTuple}
+#   3: @mindspore_nn_layer_basic_Dense_construct_42:CNode_174{[0]: CNode_145, [1]: x_shape}
+#   4: @mindspore_nn_layer_basic_Dense_construct_42:CNode_173{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> Ast: 'Namespace:mindspore.graph._parse.trope', [2]: ValueNode<Symbol> ne}
+#   5: @mindspore_nn_layer_basic_Dense_construct_42:CNode_175{[0]: CNode_173, [1]: CNode_174, [2]: ValueNode<Int64Imm> 2}
+#   6: @mindspore_nn_layer_basic_Dense_construct_42:CNode_176{[0]: ValueNode<Primitive> Cond, [1]: CNode_175, [2]: ValueNode<BoolImm> false}
+#   7: @mindspore_nn_layer_basic_Dense_construct_42:CNode_177{[0]: ValueNode<Primitive> Switch, [1]: CNode_176, [2]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_178, [3]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_43}
+#   8: @mindspore_nn_layer_basic_Dense_construct_42:CNode_179{[0]: CNode_177}
+#   9: @mindspore_nn_layer_basic_Dense_construct_42:CNode_180{[0]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_181, [1]: CNode_179}
+#  10: @mindspore_nn_layer_basic_Dense_construct_42:CNode_183{[0]: ValueNode<Primitive> Return, [1]: CNode_180}
+
+
+subgraph attr:
+training: 1
+subgraph instance: mindspore_nn_layer_basic_Dense_construct_43 : 0000021F1347EE60
+# In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:803~815, 4~16/    def construct(self, x):/
+subgraph @mindspore_nn_layer_basic_Dense_construct_43 parent: [subgraph @mindspore_nn_layer_basic_Dense_construct_39]() {
+  %0(CNode_166) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>'], bias_add)
+      : (<External, NoShape>, <External, NoShape>) -> (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:809, 16~29/            x = self.bias_add(x, self.bias)/
+  %1(CNode_162) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>'], matmul)
+      : (<External, NoShape>, <External, NoShape>) -> (<Func, NoShape>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:807, 12~23/        x = self.matmul(x, self.weight)/
+  %2(CNode_158) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>'], weight)
+      : (<External, NoShape>, <External, NoShape>) -> (<Ref[Tensor[Float32]], (256, 4736)>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:807, 27~38/        x = self.matmul(x, self.weight)/
+
+#------------------------> 19
+  %3(x) = %1(%para0_phi_x, %2)
+      : (<Tensor[Float32], (32, 380160)>, <Ref[Tensor[Float32]], (256, 4736)>) -> (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:807, 12~39/        x = self.matmul(x, self.weight)/
+  %4(CNode_159) = resolve(NameSpace[ClassMember: 'Namespace:mindspore.nn.layer.basic..<Dense::2332491616144>'], bias)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:809, 33~42/            x = self.bias_add(x, self.bias)/
+  %5(x) = %0(%3, %4)
+      : (<null>, <null>) -> (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:809, 16~43/            x = self.bias_add(x, self.bias)/
+  Return(%5)
+      : (<null>)
+      #scope: (Default/network-WithLossCell/_backbone-SpeechEmotionCNN/fc1-Dense)
+      # In file E:\anaconda3\envs\mindspore_env\lib\site-packages\mindspore\nn\layer\basic.py:812~814, 8~42/        if len(x_shape) != 2:/
+}
+# Order:
+#   1: @mindspore_nn_layer_basic_Dense_construct_43:CNode_184{[0]: ValueNode<FuncGraph> mindspore_nn_layer_basic_Dense_construct_181, [1]: x}
+#   2: @mindspore_nn_layer_basic_Dense_construct_43:CNode_185{[0]: ValueNode<Primitive> Return, [1]: x}
+
+
+# ===============================================================================================
+# The total of function graphs in evaluation stack: 20/25 (Ignored 5 internal frames).
+# ===============================================================================================
+
+
+# ===============================================================================================
+# The rest function graphs are the following:
+# ===============================================================================================
+No more function graphs.
+
